@@ -1,21 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { Container } from './Dashboard_Styles';
+import { Container, Title, List } from './Dashboard_Styles';
 import Background from '~/components/Background';
+import Appointment from '~/components/Appointment';
+
+const data = [1, 2, 3, 4, 5];
 
 export default function Dashboard() {
   return (
     <Background>
-      <View>
-        <Text>Dashboard Component</Text>
-      </View>
+      <Container>
+        <Title>Scheduled Appointments</Title>
+
+        <List
+          data={data}
+          keyExtractor={item => String(item)}
+          renderItem={({ item }) => <Appointment data={item} />}
+        />
+      </Container>
     </Background>
   );
 }
 
 Dashboard.navigationOptions = {
   tabBarLabel: 'Schedule',
-  tabBarIcon: ({ tintColor }) => <Icon name="event" size={20} color={tintColor} />,
+  tabBarIcon: ({ tintColor }) => (
+    <Icon name="event" size={20} color={tintColor} />
+  ),
 };
