@@ -1,16 +1,104 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import React, { useRef, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { Container } from './Profile_Styles';
+import { Container, Title, Separator, Form, FormInput, SubmitButton } from './Profile_Styles';
 import Background from '~/components/Background';
 
+import { updateProfileRequest } from '~/store/modules/user/actions';
+
 export default function Profile() {
+  const dispatch = useDispatch();
+  const profile = useSelector(state => state.user.profile);
+  const loading = useSelector(state => state.auth.loading);
+
+  const oldPasswordRef = useRef();
+  const newPasswordRef = useRef();
+  const confirmNewPasswordRef = useRef();
+
+  const [name, setName] = useState(profile.name);
+  const [email, setEmail] = useState(profile.email);
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+
+  useEffect(() => {
+    setOldPassword('');
+    setNewPassword('');
+    setConfirmNewPassword('');
+  }, [profile]);
+
+  function handleUpdateProfile() {
+    dispatch(
+      updateProfileRequest({
+        name,
+        email,
+        oldPassword,
+        confirmNewPassword,
+      })
+    );
+  }
+
   return (
     <Background>
-      <View>
-        <Text>Profile Component</Text>
-      </View>
+      <Container>
+        <Title>My Profile</Title>
+
+        <Form>
+          <FormInput
+            icon="person-outline"
+            placeholder="Type Your Full Name"
+            returnKeyType="next"
+            value={name}
+            onChangeText={setName}
+          />
+          <FormInput
+            icon="mail-outline"
+            keyboardType="email-address"
+            autoCorrect={false}
+            autoCapitalize="none"
+            placeholder="Type your e-mail"
+            returnKeyType="next"
+            value={email}
+            onChangeText={setEmail}
+          />
+
+          <Separator />
+
+          <FormInput
+            icon="lock-outline"
+            secureTextEntry
+            placeholder="Type your old password"
+            returnKeyType="next"
+            ref={oldPasswordRef}
+            onSubmitEditing={() => newPasswordRef.current.focus()}
+            value={oldPassword}
+            onChangeText={setOldPassword}
+          />
+          <FormInput
+            icon="lock-outline"
+            secureTextEntry
+            placeholder="Type your new password"
+            returnKeyType="next"
+            ref={newPasswordRef}
+            onSubmitEditing={() => confirmNewPasswordRef.current.focus()}
+            value={newPassword}
+            onChangeText={setNewPassword}
+          />
+          <FormInput
+            icon="lock-outline"
+            secureTextEntry
+            placeholder="Confirm your new password"
+            returnKeyType="send"
+            ref={confirmNewPasswordRef}
+            value={confirmNewPassword}
+            onChangeText={setConfirmNewPassword}
+          />
+          <SubmitButton loading={loading} onPress={handleUpdateProfile}>
+            Update Profile
+          </SubmitButton>
+        </Form>
+      </Container>
     </Background>
   );
 }
