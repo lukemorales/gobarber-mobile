@@ -2,15 +2,15 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { Container, Title, Separator, Form, FormInput, SubmitButton } from './Profile_Styles';
+import { Container, Title, Separator, Form, FormInput, SubmitButton, LogOutButton } from './Profile_Styles';
 import Background from '~/components/Background';
 
 import { updateProfileRequest } from '~/store/modules/user/actions';
+import { logOut } from '~/store/modules/auth/actions';
 
 export default function Profile() {
   const dispatch = useDispatch();
   const profile = useSelector(state => state.user.profile);
-  const loading = useSelector(state => state.auth.loading);
 
   const oldPasswordRef = useRef();
   const newPasswordRef = useRef();
@@ -94,9 +94,8 @@ export default function Profile() {
             value={confirmNewPassword}
             onChangeText={setConfirmNewPassword}
           />
-          <SubmitButton loading={loading} onPress={handleUpdateProfile}>
-            Update Profile
-          </SubmitButton>
+          <SubmitButton onPress={handleUpdateProfile}>Update Profile</SubmitButton>
+          <LogOutButton onPress={() => dispatch(logOut())}>Log Out</LogOutButton>
         </Form>
       </Container>
     </Background>
