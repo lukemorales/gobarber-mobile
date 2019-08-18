@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Routes from './routes'
+import Routes from './routes';
 
-export default function App () {
+export default function App() {
   return (
     <>
       <Routes />
     </>
   );
-};
+}

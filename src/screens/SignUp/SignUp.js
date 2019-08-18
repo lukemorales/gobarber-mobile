@@ -5,11 +5,11 @@ import { View, Text } from 'react-native';
 import Background from '~/components/Background';
 
 export default function SignUp() {
-	return (
-		<Background>
-			<View>
-				<Text>SignUp Component</Text>
-			</View>
-		</Background>
-	);
+  return (
+    <Background>
+      <View>
+        <Text>SignUp Component</Text>
+      </View>
+    </Background>
+  );
 }

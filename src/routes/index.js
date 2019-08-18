@@ -6,6 +6,6 @@ import SignUp from '~/screens/SignUp';
 export default createAppContainer(
   createSwitchNavigator({
     LogIn,
-    SignUp
+    SignUp,
   })
-)
+);
