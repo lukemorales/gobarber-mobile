@@ -1,15 +1,29 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import logo from '~/assets/logo.png';
 
 import Background from '~/components/Background';
 import { Container, Logo, Form, FormInput, SubmitButton, LogInLink, LogInLinkText } from './SignUp_Styles';
 
+import { signUpRequest } from '~/store/modules/auth/actions';
+
 export default function SignUp({ navigation }) {
+  const dispatch = useDispatch();
+
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  function handleCreateAccount() {}
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const loading = useSelector(state => state.auth.loading);
+
+  function handleCreateAccount() {
+    dispatch(signUpRequest(name, email, password));
+    navigation.navigate('LogIn');
+  }
 
   return (
     <Background>
@@ -22,6 +36,8 @@ export default function SignUp({ navigation }) {
             placeholder="Type Your Full Name"
             returnKeyType="next"
             onSubmitEditing={() => emailRef.current.focus()}
+            value={name}
+            onChangeText={setName}
           />
           <FormInput
             icon="mail-outline"
@@ -32,6 +48,8 @@ export default function SignUp({ navigation }) {
             ref={emailRef}
             returnKeyType="next"
             onSubmitEditing={() => passwordRef.current.focus()}
+            value={email}
+            onChangeText={setEmail}
           />
           <FormInput
             icon="lock-outline"
@@ -40,8 +58,12 @@ export default function SignUp({ navigation }) {
             ref={passwordRef}
             returnKeyType="send"
             onSubmitEditing={handleCreateAccount}
+            value={password}
+            onChangeText={setPassword}
           />
-          <SubmitButton onPress={handleCreateAccount}>Create Account</SubmitButton>
+          <SubmitButton loading={loading} onPress={handleCreateAccount}>
+            Create Account
+          </SubmitButton>
         </Form>
 
         <LogInLink onPress={() => navigation.navigate('LogIn')}>
