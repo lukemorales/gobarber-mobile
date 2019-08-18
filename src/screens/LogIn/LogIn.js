@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { View, Text } from 'react-native';
-import { Container } from './LogIn_Styles';
+// import { Container } from './LogIn_Styles';
+
+import Background from '~/components/Background';
 
 export default function LogIn() {
 	return (
-		<Container>
-			<View>
-				<Text>LogIn Component</Text>
-			</View>
-		</Container>
+    <Background>
+      <View>
+        <Text>LogIn Component</Text>
+      </View>
+    </Background>
 	);
 }
