@@ -10,8 +10,7 @@ export const Title = styled.Text`
   font-size: 20px;
   font-weight: bold;
   align-self: center;
-  margin-top: ${() =>
-    Platform.OS === 'android' ? StatusBar.currentHeight + 32 : 32};
+  margin-top: ${() => (Platform.OS === 'android' ? StatusBar.currentHeight + 32 : 32)};
 `;
 
 export const List = styled.FlatList.attrs({
