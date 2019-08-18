@@ -2,20 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { Container } from './Dashboard_Styles';
+import { Container } from './Profile_Styles';
 import Background from '~/components/Background';
 
-export default function Dashboard() {
+export default function Profile() {
   return (
     <Background>
       <View>
-        <Text>Dashboard Component</Text>
+        <Text>Profile Component</Text>
       </View>
     </Background>
   );
 }
 
-Dashboard.navigationOptions = {
-  tabBarLabel: 'Schedule',
-  tabBarIcon: ({ tintColor }) => <Icon name="event" size={20} color={tintColor} />,
+Profile.navigationOptions = {
+  tabBarLabel: 'Profile',
+  tabBarIcon: ({ tintColor }) => <Icon name="person" size={20} color={tintColor} />,
 };
