@@ -15,7 +15,7 @@ export function* logIn({ payload }) {
 
     const { token, user } = response.data;
 
-    if (!user.provider) {
+    if (user.provider) {
       Alert.alert('Login Error', 'User must not be a provider.');
       return;
     }
