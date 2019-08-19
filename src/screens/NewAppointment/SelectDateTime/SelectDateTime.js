@@ -6,24 +6,28 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Container } from './SelectDateTime_Styles';
 import Background from '~/components/Background';
 
+import DateInput from '~/components/DateInput';
+
 export default function SelectDateTime() {
+  const [date, setDate] = useState(new Date());
+
   return (
     <Background>
       <Container>
-        <Text>SelectDateTime Component</Text>
+        <DateInput date={date} onChange={setDate} />
       </Container>
     </Background>
   );
 }
 
 SelectDateTime.navigationOptions = ({ navigation }) => ({
-  title: 'Select the Timeo of Your Appointment',
+  title: 'When Are You Coming?',
   headerStyle: {
     marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
   headerLeft: () => (
     <TouchableOpacity>
-      <Icon name="chevron-left" size={20} color="#fff" onPress={() => navigation.navigate('SelectProvider')} />
+      <Icon name="chevron-left" size={20} color="#fff" onPress={() => navigation.goBack()} />
     </TouchableOpacity>
   ),
 });
