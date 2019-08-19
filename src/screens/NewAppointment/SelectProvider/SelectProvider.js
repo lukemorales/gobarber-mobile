@@ -46,7 +46,7 @@ export default function SelectProvider({ navigation }) {
 SelectProvider.navigationOptions = ({ navigation }) => ({
   title: 'Select Your Barber',
   headerStyle: {
-    marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    marginTop: Platform.OS === 'android' ? StatusBar.currentHeight + 8 : 0,
   },
   headerLeft: () => (
     <TouchableOpacity>

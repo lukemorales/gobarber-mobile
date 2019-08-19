@@ -10,7 +10,7 @@ export const ProvidersList = styled.FlatList.attrs({
   showsVerticalScrollIndicator: false,
   numColumns: 2,
 })`
-  margin-top: 80px;
+  margin-top: 88px;
 `;
 
 export const Provider = styled(RectButton)`
