@@ -4,7 +4,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { Container, Agenda, Slot, Title } from './SelectDateTime_Styles';
-import Background from '~/components/Background';
 import DateInput from '~/components/DateInput';
 
 import api from '~/services/api';
@@ -32,21 +31,19 @@ export default function SelectDateTime({ navigation }) {
   }
 
   return (
-    <Background>
-      <Container>
-        <DateInput date={date} onChange={setDate} />
+    <Container>
+      <DateInput date={date} onChange={setDate} />
 
-        <Agenda
-          data={agenda}
-          keyExtractor={slot => String(slot.time)}
-          renderItem={({ item: slot }) => (
-            <Slot onPress={() => handleSelectSlot(slot.value)} enabled={slot.available}>
-              <Title>{slot.time}</Title>
-            </Slot>
-          )}
-        />
-      </Container>
-    </Background>
+      <Agenda
+        data={agenda}
+        keyExtractor={slot => String(slot.time)}
+        renderItem={({ item: slot }) => (
+          <Slot onPress={() => handleSelectSlot(slot.value)} enabled={slot.available}>
+            <Title>{slot.time}</Title>
+          </Slot>
+        )}
+      />
+    </Container>
   );
 }
 

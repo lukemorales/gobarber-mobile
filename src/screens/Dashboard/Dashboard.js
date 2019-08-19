@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { Container, Title, List } from './Dashboard_Styles';
-import Background from '~/components/Background';
 import Appointment from '~/components/Appointment';
 
 import api from '~/services/api';
@@ -34,17 +33,15 @@ export default function Dashboard() {
   }
 
   return (
-    <Background>
-      <Container>
-        <Title>Scheduled Appointments</Title>
+    <Container>
+      <Title>Scheduled Appointments</Title>
 
-        <List
-          data={appointments}
-          keyExtractor={item => String(item.id)}
-          renderItem={({ item }) => <Appointment data={item} cancelAppointment={() => handleCancel(item.id)} />}
-        />
-      </Container>
-    </Background>
+      <List
+        data={appointments}
+        keyExtractor={item => String(item.id)}
+        renderItem={({ item }) => <Appointment data={item} cancelAppointment={() => handleCancel(item.id)} />}
+      />
+    </Container>
   );
 }
 

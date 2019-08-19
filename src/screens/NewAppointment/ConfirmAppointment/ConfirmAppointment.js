@@ -3,11 +3,11 @@ import { View, Text } from 'react-native';
 import { Container } from './ConfirmAppointment_Styles';
 
 export default function ConfirmAppointment() {
-	return (
-		<Container>
-			<View>
-				<Text>ConfirmAppointment Component</Text>
-			</View>
-		</Container>
-	);
+  return (
+    <Container>
+      <View>
+        <Text>ConfirmAppointment Component</Text>
+      </View>
+    </Container>
+  );
 }

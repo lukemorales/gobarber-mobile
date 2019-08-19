@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { Container, Title, Separator, Form, FormInput, SubmitButton, LogOutButton } from './Profile_Styles';
-import Background from '~/components/Background';
 
 import { updateProfileRequest } from '~/store/modules/user/actions';
 import { logOut } from '~/store/modules/auth/actions';
@@ -40,65 +39,63 @@ export default function Profile() {
   }
 
   return (
-    <Background>
-      <Container>
-        <Title>My Profile</Title>
+    <Container>
+      <Title>My Profile</Title>
 
-        <Form>
-          <FormInput
-            icon="person-outline"
-            placeholder="Type Your Full Name"
-            returnKeyType="next"
-            value={name}
-            onChangeText={setName}
-          />
-          <FormInput
-            icon="mail-outline"
-            keyboardType="email-address"
-            autoCorrect={false}
-            autoCapitalize="none"
-            placeholder="Type your e-mail"
-            returnKeyType="next"
-            value={email}
-            onChangeText={setEmail}
-          />
+      <Form>
+        <FormInput
+          icon="person-outline"
+          placeholder="Type Your Full Name"
+          returnKeyType="next"
+          value={name}
+          onChangeText={setName}
+        />
+        <FormInput
+          icon="mail-outline"
+          keyboardType="email-address"
+          autoCorrect={false}
+          autoCapitalize="none"
+          placeholder="Type your e-mail"
+          returnKeyType="next"
+          value={email}
+          onChangeText={setEmail}
+        />
 
-          <Separator />
+        <Separator />
 
-          <FormInput
-            icon="lock-outline"
-            secureTextEntry
-            placeholder="Type your old password"
-            returnKeyType="next"
-            ref={oldPasswordRef}
-            onSubmitEditing={() => newPasswordRef.current.focus()}
-            value={oldPassword}
-            onChangeText={setOldPassword}
-          />
-          <FormInput
-            icon="lock-outline"
-            secureTextEntry
-            placeholder="Type your new password"
-            returnKeyType="next"
-            ref={newPasswordRef}
-            onSubmitEditing={() => confirmNewPasswordRef.current.focus()}
-            value={newPassword}
-            onChangeText={setNewPassword}
-          />
-          <FormInput
-            icon="lock-outline"
-            secureTextEntry
-            placeholder="Confirm your new password"
-            returnKeyType="send"
-            ref={confirmNewPasswordRef}
-            value={confirmNewPassword}
-            onChangeText={setConfirmNewPassword}
-          />
-          <SubmitButton onPress={handleUpdateProfile}>Update Profile</SubmitButton>
-          <LogOutButton onPress={() => dispatch(logOut())}>Log Out</LogOutButton>
-        </Form>
-      </Container>
-    </Background>
+        <FormInput
+          icon="lock-outline"
+          secureTextEntry
+          placeholder="Type your old password"
+          returnKeyType="next"
+          ref={oldPasswordRef}
+          onSubmitEditing={() => newPasswordRef.current.focus()}
+          value={oldPassword}
+          onChangeText={setOldPassword}
+        />
+        <FormInput
+          icon="lock-outline"
+          secureTextEntry
+          placeholder="Type your new password"
+          returnKeyType="next"
+          ref={newPasswordRef}
+          onSubmitEditing={() => confirmNewPasswordRef.current.focus()}
+          value={newPassword}
+          onChangeText={setNewPassword}
+        />
+        <FormInput
+          icon="lock-outline"
+          secureTextEntry
+          placeholder="Confirm your new password"
+          returnKeyType="send"
+          ref={confirmNewPasswordRef}
+          value={confirmNewPassword}
+          onChangeText={setConfirmNewPassword}
+        />
+        <SubmitButton onPress={handleUpdateProfile}>Update Profile</SubmitButton>
+        <LogOutButton onPress={() => dispatch(logOut())}>Log Out</LogOutButton>
+      </Form>
+    </Container>
   );
 }
 

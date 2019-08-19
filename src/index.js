@@ -7,13 +7,16 @@ import '~/config/ReactotronConfig';
 import { store, persistor } from './store';
 
 import App from './App';
+import Background from './components/Background';
 
 export default function Index() {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
-        <App />
+        <Background>
+          <App />
+        </Background>
       </PersistGate>
     </Provider>
   );

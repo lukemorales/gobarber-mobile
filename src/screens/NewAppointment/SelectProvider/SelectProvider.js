@@ -4,7 +4,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { Container, ProvidersList, Provider, Avatar, Name } from './SelectProvider_Styles';
-import Background from '~/components/Background';
 
 import api from '~/services/api';
 
@@ -20,26 +19,24 @@ export default function SelectProvider({ navigation }) {
   }, []);
 
   return (
-    <Background>
-      <Container>
-        <ProvidersList
-          data={providers}
-          keyExtractor={provider => String(provider.id)}
-          renderItem={({ item: provider }) => (
-            <Provider onPress={() => navigation.navigate('SelectDateTime', { provider })}>
-              <Avatar
-                source={{
-                  uri: provider.avatar
-                    ? provider.avatar.url
-                    : `https://ui-avatars.com/api/?background=7159c1&color=fff&name=${provider.name}`,
-                }}
-              />
-              <Name>{provider.name}</Name>
-            </Provider>
-          )}
-        />
-      </Container>
-    </Background>
+    <Container>
+      <ProvidersList
+        data={providers}
+        keyExtractor={provider => String(provider.id)}
+        renderItem={({ item: provider }) => (
+          <Provider onPress={() => navigation.navigate('SelectDateTime', { provider })}>
+            <Avatar
+              source={{
+                uri: provider.avatar
+                  ? provider.avatar.url
+                  : `https://ui-avatars.com/api/?background=7159c1&color=fff&name=${provider.name}`,
+              }}
+            />
+            <Name>{provider.name}</Name>
+          </Provider>
+        )}
+      />
+    </Container>
   );
 }
 
